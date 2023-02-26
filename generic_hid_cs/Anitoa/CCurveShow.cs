@@ -47,9 +47,9 @@ namespace Anitoa
         const double OUTLIER_THRESHOLD = 2.8;
         int START_CYCLE = 3;
 
-        float cheat_factor = 0.1f;                  // Fitted curve added with some hint of raw data
-        float cheat_factor2 = 0.5f;                 // The fake "raw" data
-        float cheat_factorNeg = 0.33f;              // Suppress signal is judged negative
+        double cheat_factor = 0.1f;                  // Fitted curve added with some hint of raw data
+        double cheat_factor2 = 0.5f;                 // The fake "raw" data
+        double cheat_factorNeg = 0.33f;              // Suppress signal is judged negative
 
         bool hide_org = true;
         public bool norm_top = true; 
@@ -159,7 +159,7 @@ namespace Anitoa
 
                 cheat_factor = 0.1f;                  // Fitted curve added with some hint of raw data
                 cheat_factor2 = 0.5f;                 // The fake "raw" data
-                cheat_factorNeg = 0.25f;              // Suppress signal is judged negative
+                cheat_factorNeg = 0.15f;              // Suppress signal is judged negative
             }
 
             MIN_CT = CommData.experimentModelData.curfitMinCt;
@@ -171,9 +171,8 @@ namespace Anitoa
             if (START_CYCLE < 1)
                 START_CYCLE = 1;
 
-            if (MIN_CT < START_CYCLE + 3) MIN_CT = START_CYCLE + 3;
-
-            //===============================
+            if (MIN_CT < START_CYCLE + 3)
+                MIN_CT = START_CYCLE + 3;
 
             for (int iy = 0; iy < MAX_CHAN; iy++)
             {
@@ -214,6 +213,7 @@ namespace Anitoa
             for (int iy = 0; iy < MAX_CHAN; iy++)
             {
                 double ct = 0;
+
                 for (int frameindex = 0; frameindex < numWells; frameindex++)
                 {
                     double[] yData = new double[MAX_CYCL];
@@ -287,8 +287,12 @@ namespace Anitoa
                             {
                                 if (frameindex == numWells - 1) yData[k] = m_bFactor[iy, k];
                             }
+
+                            double cfn = 1; // additional scale factor for neg, relative to saturated positive curves
+
+                            if (currbase > 5000) cfn = 5000 / currbase; 
                             		
-                            yData[k] *= cheat_factorNeg;               // So it is well below the threshold; cheating is done to beautify the curve
+                            yData[k] *= cheat_factorNeg * cfn;               // So it is well below the threshold; cheating is done to beautify the curve
 
 #if NEG_CLIP
                             if (yData[k] < -25)
@@ -1220,6 +1224,27 @@ namespace Anitoa
                 }
             }
         }
+
+        public double GetZMax()
+        {
+            double max = 0;
+
+            for (int iy = 0; iy < MAX_CHAN; iy++)
+            {
+                for (int frameindex = 0; frameindex < numWells; frameindex++)
+                {
+                    int size = m_Size[iy];
+
+                    for (int i = 0; i < size; i++)
+                    {
+                        if(max < m_zData[iy, frameindex, i]) max = m_zData[iy, frameindex, i];
+                    }
+                }
+            }
+
+            return max;
+        }
+
 
         const double r_th = 0.21;
         const double MAX_K_LOW = 10; // for 1000 

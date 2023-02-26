@@ -266,9 +266,13 @@ namespace Anitoa
             crossTalk43 = 0;
             crossTalk34 = 0.05;
 
-            confiTh = 0.175;
-            ampEffTh = 0.2;
-            snrTh = 0.125;
+            //confiTh = 0.175;
+            //ampEffTh = 0.2;
+            //snrTh = 0.125;
+
+            confiTh = 0.2;
+            ampEffTh = 0.25;
+            snrTh = 0.15;
 
             gainMode = new int[MAX_CHAN];
 

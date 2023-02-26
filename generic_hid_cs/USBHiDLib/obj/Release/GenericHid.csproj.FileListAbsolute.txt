@@ -239,3 +239,11 @@ C:\Users\zding\Documents\WorkArea\Git Maverick\Maverick_En\generic_hid_cs\USBHiD
 C:\Users\zding\Documents\WorkArea\Git Maverick\Maverick_En\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.csproj.CoreCompileInputs.cache
 C:\Users\zding\Documents\WorkArea\Git Maverick\Maverick_En\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.dll
 C:\Users\zding\Documents\WorkArea\Git Maverick\Maverick_En\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.pdb
+C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\USBHiDLib\bin\Release\GenericHid.dll
+C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\USBHiDLib\bin\Release\GenericHid.pdb
+C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.csprojAssemblyReference.cache
+C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.Properties.Resources.resources
+C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.csproj.GenerateResource.cache
+C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.csproj.CoreCompileInputs.cache
+C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.dll
+C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Release\GenericHid.pdb

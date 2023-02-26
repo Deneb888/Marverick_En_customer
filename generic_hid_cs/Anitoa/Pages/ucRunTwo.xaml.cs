@@ -59,6 +59,8 @@ namespace Anitoa.Pages
 
         const double MIN_CT_TH = 1;
 
+        double y_max = 0;
+
         public ucRunTwo()
         {
             InitializeComponent();
@@ -1241,6 +1243,18 @@ namespace Anitoa.Pages
                 }
             }
 
+            // Adjust MaxValue
+            if (y_max < 3000)
+                dcAxisRange.MaxValue = 3100;
+            else
+                dcAxisRange.MaxValue = Math.Round(y_max / 100, 0) * 100 + 100;
+
+            // Adjust Grid
+            double grid = Math.Round(y_max / 1000, 0) * 100;
+
+            if (grid > 500) dcXYDiagram2D.ActualAxisY.GridSpacing = grid;
+            else dcXYDiagram2D.ActualAxisY.GridSpacing = 500;
+
             /*            LineSeries2D line = null;
 
                         foreach (var item in dcXYDiagram2D.Series)
@@ -2185,6 +2199,8 @@ namespace Anitoa.Pages
                 m_falsePositive = CCurveShow.m_falsePositive;
                 m_Confidence = CCurveShow.m_Confidence;
                 m_Advisory = CCurveShow.m_Advisory;
+
+                y_max = CCurveShow.GetZMax();
 
                 for (int i = 0; i< MAX_CHAN; i++)
                 {
