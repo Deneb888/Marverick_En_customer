@@ -89,10 +89,10 @@ namespace Anitoa
         private TrimReader TrimReader = new TrimReader();
 
         bool isCycleComplete = false;
-        Thread ThreadImg, ThreadTemp, ThreadOther;
+//        Thread ThreadImg, ThreadTemp, ThreadOther;
 
         //int imgFrame = 12;
-        bool flag = false;
+//        bool flag = false;
 
         //int cboChan1 = 1;
         //int cboChan2 = 1;
@@ -149,6 +149,10 @@ namespace Anitoa
         private bool meltCmdSent = false;
 
         System.Threading.Mutex mutex;
+
+        private int dn_cnt = 0;
+        private int base_cnt = 90;               // 4-7-23 BioGx onsite investigation, about half a second per temp sample, so this is 30 sec after lid temp up, or does it include the time of lid heating up? Yes it does
+        private int autoint_steps = 5;
 
         #endregion 变量定义
 
@@ -509,9 +513,10 @@ namespace Anitoa
             CommData.experimentModelData.crossTalk34 = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtCrossTalk34.Text.ToString());
             CommData.experimentModelData.crossTalk43 = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtCrossTalk43.Text.ToString());
 
-            CommData.experimentModelData.ampEffTh = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtAmpEffTh.Text.ToString());
-            CommData.experimentModelData.snrTh = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtSnRTh.Text.ToString());
-            CommData.experimentModelData.confiTh = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtConfiTh.Text.ToString());
+            // int cur_chan = ucTiaoShiTwo.cur_chan;
+            CommData.experimentModelData.ampEffTh/*ld[cur_chan]*/ = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtAmpEffTh.Text.ToString());
+            CommData.experimentModelData.snrTh/*ld[cur_chan]*/ = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtSnRTh.Text.ToString());
+            CommData.experimentModelData.confiTh/*ld[cur_chan]*/ = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtConfiTh.Text.ToString());
 
             CommData.int_time_1 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text);
             CommData.int_time_2 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan2.Text);
@@ -849,8 +854,8 @@ namespace Anitoa
                 tmrRJQX.Stop();
 
                 CommData.temp_history[0] = new List<float>();
-                CommData.temp_history[1] = new List<float>();                
-
+                CommData.temp_history[1] = new List<float>();
+               
                 //                this.MyDeviceManagement.WhenUsbEvent += new DeviceManagement.usbEventsHandler(MyDeviceManagement_WhenUsbEvent);
             }
             catch (Exception ex)
@@ -2563,24 +2568,24 @@ namespace Anitoa
             //m_factorIntTime[2] = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text);
             //m_factorIntTime[3] = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text);
 
-            SetSensor(1, (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text));
-            SetSensor(2, (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan2.Text));
-            SetSensor(3, (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text));
-            SetSensor(4, (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text));
+            SetSensor(1, CommData.int_time_1);
+            SetSensor(2, CommData.int_time_2);
+            SetSensor(3, CommData.int_time_3);
+            SetSensor(4, CommData.int_time_4);
 
-            CommData.int_time_1 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text);
+           //  CommData.int_time_1 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text);
             //            ucProtocol.SelSensor(MyDeviceManagement, 1);
             //            ucProtocol.SetIntergrationTime(MyDeviceManagement, int_time_1);
 
-            CommData.int_time_2 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan2.Text);
+            // CommData.int_time_2 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan2.Text);
             //            ucProtocol.SelSensor(MyDeviceManagement, 2);
             //            ucProtocol.SetIntergrationTime(MyDeviceManagement, int_time_2);
 
-            CommData.int_time_3 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text);
+            // CommData.int_time_3 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text);
             //            ucProtocol.SelSensor(MyDeviceManagement, 3);
             //            ucProtocol.SetIntergrationTime(MyDeviceManagement, int_time_3);
 
-            CommData.int_time_4 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text);
+            // CommData.int_time_4 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text);
             //            ucProtocol.SelSensor(MyDeviceManagement, 4);
             //            ucProtocol.SetIntergrationTime(MyDeviceManagement, int_time_4);
 
@@ -2678,7 +2683,6 @@ namespace Anitoa
                     return inputdatas;
                 }
         */
-
 
         private void SetSensor(int c, float IntTime)
         {
@@ -3235,7 +3239,7 @@ namespace Anitoa
         /// <summary>
         /// 读取文件
         /// </summary>
-        public void ReadFile()
+        public void ReadFile()          // Not used
         {
             try
             {
@@ -3292,7 +3296,6 @@ namespace Anitoa
             {
                 MessageBox.Show(e.Message);
             }
-
         }
 
         /// <summary>
@@ -3367,7 +3370,6 @@ namespace Anitoa
                     ReadEEPROM(sender, e);
                     break;
             }
-
         }
 
         private void StartSY()
@@ -3464,15 +3466,35 @@ namespace Anitoa
 
                     tmrThread = true;
                     //CommData.run1MeltMode = false;
+
+                    double dtime = currDebugModelData.InitaldenaTime;
+
+                    if (dtime >= 60)
+                    {
+                        if (dtime < 120)
+                        {
+                            base_cnt = (int)((dtime - 15) * 2);
+                            autoint_steps = 5;
+                        }
+                        else if(dtime < 300)
+                        {
+                            base_cnt = (int)((dtime - 30) * 2);
+                            autoint_steps = 6;
+                        }
+                        else
+                        {
+                            base_cnt = 540;
+                            autoint_steps = 8;
+                        }
+                    }
                 }
             }
 
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "Aha + Main");
+                MessageBox.Show(ex.Message + "StartSY + Main");
             }
         }
-
 
         //        int currStep = 0;
 
@@ -3595,10 +3617,10 @@ namespace Anitoa
 
             this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
             {
-
                 ucTiaoShiOne.txtImg.AppendText(chanstr + "\r\n");
                 ucTiaoShiOne.txtImg.ScrollToEnd();
             });
+
             //tmrContinuousDataCollect.Stop();
             //            byte[] inputdatas = new byte[64];
 
@@ -3716,6 +3738,7 @@ namespace Anitoa
             string timestr = string.Format("{0}_{1}", DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString(" hhmmss"));
             string fname = string.Format("ImgData\\ADCData_{0}.txt", timestr);
             string path = AppDomain.CurrentDomain.BaseDirectory + fname;
+
             if (!File.Exists(path))
             {
                 try
@@ -3733,6 +3756,8 @@ namespace Anitoa
                     MessageBox.Show(ex.Message);
                 }
             }
+
+            return;     // 4-9-2023 No need
 
             fname = string.Format("ImgData\\ADCData_{0}_PITemp.txt", timestr);
             path = AppDomain.CurrentDomain.BaseDirectory + fname;
@@ -4741,12 +4766,8 @@ namespace Anitoa
                     //TxData[NumData] |= lByte;				//将低4位byte放到word buffer低8位
                     //TxData[NumData] >>= 4;						//将word buffer整体右移4位，变成有效12位数据
 
-
-
                     int value = TrimReader.TocalADCCorrection(NumData, inputdatas[NumData * 2 + 7], inputdatas[NumData * 2 + 6], CommData.imgFrame, chan, CommData.experimentModelData.gainMode[chan - 1], 0);
                     TxData[NumData] = (ushort)value;
-
-
                 }
 
                 TxData[CommData.imgFrame] = inputdatas[5];
@@ -5678,37 +5699,43 @@ namespace Anitoa
 
         float[] opt_int_time = new float[MAX_CHAN];
         int[] max_read_list = new int[MAX_CHAN];
-        float[] inc_factor = new float[MAX_CHAN];
+//        float[] inc_factor = new float[MAX_CHAN];
         int[] max_read_0 = new int[MAX_CHAN];
 
-        private void ReadSetTime(object source, ElapsedEventArgs ele)
+        private void ReadSetTime(object source, ElapsedEventArgs ele)       // Triggered by TmrJF
         {
             try
             {
                 tmrJF.Stop();
-                if (jfindex > 5)
+
+                if (jfindex > autoint_steps)
                 {
                     this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
                     {
                         ucTiaoShiOne.txtdebug.AppendText("Int Time Calibration Done\r\n");
                         ucTiaoShiOne.txtdebug.ScrollToEnd();
                         ucSettingTwo.bdName.Visibility = Visibility.Collapsed;
-                        if (CommData.cboChan1 == 1)
-                        {
-                            ucTiaoShiTwo.txtITChan1.Text = opt_int_time[0].ToString();
-                        }
-                        if (CommData.cboChan2 == 1)
-                        {
-                            ucTiaoShiTwo.txtITChan2.Text = opt_int_time[1].ToString();
-                        }
-                        if (CommData.cboChan3 == 1)
-                        {
-                            ucTiaoShiTwo.txtITChan3.Text = opt_int_time[2].ToString();
-                        }
-                        if (CommData.cboChan4 == 1)
-                        {
-                            ucTiaoShiTwo.txtITChan4.Text = opt_int_time[3].ToString();
-                        }
+                        //if (CommData.cboChan1 == 1)           // 4-9-2023 No more need
+                        //{
+                        //    ucTiaoShiTwo.txtITChan1.Text = opt_int_time[0].ToString();
+                        //}
+                        //if (CommData.cboChan2 == 1)
+                        //{
+                        //    ucTiaoShiTwo.txtITChan2.Text = opt_int_time[1].ToString();
+                        //}
+                        //if (CommData.cboChan3 == 1)
+                        //{
+                        //    ucTiaoShiTwo.txtITChan3.Text = opt_int_time[2].ToString();
+                        //}
+                        //if (CommData.cboChan4 == 1)
+                        //{
+                        //    ucTiaoShiTwo.txtITChan4.Text = opt_int_time[3].ToString();
+                        //}
+
+                        CommData.int_time_1 = opt_int_time[0];
+                        CommData.int_time_2 = opt_int_time[1];
+                        CommData.int_time_3 = opt_int_time[2];
+                        CommData.int_time_4 = opt_int_time[3];
 
                         SetIntergrationTimeAndGain();
                         tmrThread = false;
@@ -5731,11 +5758,12 @@ namespace Anitoa
                     jfindex = 0;
                     return;
                 }
-                else
-                {
+               // else
+               // {
                     ReadAllImg();
                     ReadFileDataBySD();
                     AutocalibInt();
+
                     this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
                     {
                         if (CommData.cboChan1 == 1)
@@ -5763,9 +5791,10 @@ namespace Anitoa
                             ucTiaoShiOne.txtdebug.ScrollToEnd();
                         }
                     });
+
                     jfindex++;
                     tmrJF.Start();
-                }
+            //    }
             }
             catch (Exception e)
             {
@@ -5776,6 +5805,8 @@ namespace Anitoa
         // Auto int time "Zhi Dong Jiao Jie Ji Fen Shi Jian"
         public void ZDCJJFSJ()
         {
+            if (!CommData.deviceFound) return;
+
             for (int i = 0; i < MAX_CHAN; i++)
             {        
                 SetSensor(i + 1, 1.0f);
@@ -5799,7 +5830,7 @@ namespace Anitoa
 
                 opt_int_time[i] = 1;
                 max_read_list[i] = 30;
-                inc_factor[i] = 0;
+//                inc_factor[i] = 0;
                 max_read_0[i] = 20;
                 SetSensor(i + 1, (float)Math.Round(opt_int_time[i]));
             }
@@ -5812,22 +5843,22 @@ namespace Anitoa
             //            SetSensor(2, (float)1.0);
             //            SetSensor(3, (float)1.0);
             //            SetSensor(4, (float)1.0);
-            ucTiaoShiTwo.txtITChan1.Text = "1";
-            ucTiaoShiTwo.txtITChan2.Text = "1";
-            ucTiaoShiTwo.txtITChan3.Text = "1";
-            ucTiaoShiTwo.txtITChan4.Text = "1";
+            //ucTiaoShiTwo.txtITChan1.Text = "1";       // 4-9-23 ZD No need
+            //ucTiaoShiTwo.txtITChan2.Text = "1";
+            //ucTiaoShiTwo.txtITChan3.Text = "1";
+            //ucTiaoShiTwo.txtITChan4.Text = "1";
             Thread.Sleep(1000);
 
             tmrJF.Start();
             tmrThread = true;
         }
 
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-            ZDCJJFSJ();
-        }
+        //private void Button_Click_6(object sender, RoutedEventArgs e)
+        //{
+        //    ZDCJJFSJ();
+        //}
 
-        public void ReadFileDataBySD()
+        public void ReadFileDataBySD()      // Read data from file and transfer to diclist
         {
             try
             {
@@ -5880,12 +5911,12 @@ namespace Anitoa
             }
         }
 
-        public double[,,] ReadCCurveShow()
+        public double[,,] ReadCCurveShow()          // ZD 4-9-23 comment. This is for calib only, read data from diclist and move to m_YData
         {
             double[,,] m_yData = new double[MAX_CHAN, MAX_WELL, MAX_CYCL];
-            CCurveShow CCurveShow = new CCurveShow();
-            CCurveShow.InitData();                              // Zhimin, what is this doing here
-            List<string> kslist = new List<string>();//定义孔数
+//            CCurveShow CCurveShow = new CCurveShow();
+//            CCurveShow.InitData();                              // Zhimin, what is this doing here, 4-9-2023 ZD removed. No need
+            List<string> kslist = new List<string>();             //定义孔数
 
             /*
             kslist.Add("A1");
@@ -5995,10 +6026,8 @@ namespace Anitoa
 
         public void AutocalibInt()
         {
-            int max_read;
-            float inc;
-            float i_factor = 0;
-            float t_factor = 1.0f;
+            int max_read, max_diff;
+            float inc = 0, i_factor = 0;
 
             for (int i = 0; i < MAX_CHAN; i++)
             {
@@ -6009,43 +6038,39 @@ namespace Anitoa
                 {
                     max_read_0[i] = max_read;
                 }
-                else if (jfindex == 1)
+                else // if (jfindex == 1)   // 4-08 2023 now update step factor every step
                 {
-                    max_read -= max_read_0[i];
-                    if (max_read < 20) max_read = 20;
+                    max_diff = max_read - max_read_0[i];
+                    if (max_diff < 30) max_diff = 30;
 
                     float top;
 
                     switch (i)
                     {
                         case 0:
-                            top = 0.7f;
-                            t_factor = 1.0f;
+                            top = 0.4f;
                             break;
                         case 1:
-                            top = 0.6f;
-                            t_factor = 1.0f;
+                            top = 0.5f;
                             break;
                         case 2:
-                            top = 1.0f;
-                            t_factor = 1.5f;
+                            top = 0.75f;
                             break;
                         case 3:
-                            top = 0.8f;
-                            t_factor = 1.7f;
+                            top = 0.5f;
                             break;
                         default:
                             top = 0;
                             break;
                     }
 
-                    i_factor = top / (float)max_read;
-                    inc_factor[i] = i_factor;
+                    i_factor = top * (opt_int_time[i] - 1.0f) / (float)max_diff;                    
                 }
 
-                inc = (float)Math.Round(Convert.ToSingle((t_factor * AutoInt_Target - max_read) * inc_factor[i]), 2);    // slowly approach the opt int time to avoid saturation
+                inc = (float)Math.Round(Convert.ToSingle((AutoInt_Target - max_read) * i_factor), 2);    // slowly approach the opt int time to avoid saturation
 
-                if (inc < 0) inc = 0;
+                if (inc < 0)
+                    inc = 0;
 
                 if (jfindex == 0)
                 {
@@ -6056,21 +6081,21 @@ namespace Anitoa
                     opt_int_time[i] += inc;
                 }
 
-                if (opt_int_time[i] > 600)
-                    opt_int_time[i] = 600;
+                if (opt_int_time[i] > 500)
+                    opt_int_time[i] = 500;
 
-                //float a = (float)Math.Round(opt_int_time[i]);
-                SetSensor(i + 1, (float)Math.Round(opt_int_time[i]));
                 opt_int_time[i] = (float)Math.Round(opt_int_time[i]);
-
+                SetSensor(i + 1, opt_int_time[i]);
             }
         }
 
         public int GetMaxChanRead(int ch)
         {
             double[,,] m_yData = ReadCCurveShow();
+
             double[,] yData = new double[MAX_WELL, MAX_CYCL];
             double max = 0;
+
             for (int i = 0; i < CommData.KsIndex; i++)
             {
                 for (int n = 0; n < MAX_CYCL; n++)
@@ -6082,6 +6107,7 @@ namespace Anitoa
                     }
                 }
             }
+
             return Convert.ToInt32(max);
         }
 
@@ -7481,8 +7507,6 @@ namespace Anitoa
             EsSystemRequired = 0x00000001
         }
 
-        private int dn_cnt = 0;
-        private const int base_cnt = 90;
 
         private bool DnAutoint()
         {
@@ -7495,12 +7519,11 @@ namespace Anitoa
                 StartDnAutoint();
                 Thread.Sleep(300);
 
-                //                return;
+                return true;        // 4-8-23 Biogx visit edit
             }
-
-            if (dn_cnt < base_cnt + 6)
+            else if (dn_cnt <= base_cnt + autoint_steps)
             {
-                jfindex = dn_cnt - base_cnt;
+                jfindex = dn_cnt - base_cnt - 1;
 
                 ReadAllImg();
                 ReadFileDataBySD();
@@ -7510,25 +7533,25 @@ namespace Anitoa
                 {
                     if (CommData.cboChan1 == 1)
                     {
-                        string res1 = string.Format("chip#1:max_read:{0};  opt_int_time：{1}", max_read_list[0], opt_int_time[0]);
+                        string res1 = string.Format("chip#1:max_read:{0}; new opt_int_time：{1}", max_read_list[0], opt_int_time[0]);
                         ucTiaoShiOne.txtdebug.AppendText(res1 + "\r\n");
                         ucTiaoShiOne.txtdebug.ScrollToEnd();
                     }
                     if (CommData.cboChan2 == 1)
                     {
-                        string res2 = string.Format("chip#2:max_read:{0};  opt_int_time：{1}", max_read_list[1], opt_int_time[1]);
+                        string res2 = string.Format("chip#2:max_read:{0}; new opt_int_time：{1}", max_read_list[1], opt_int_time[1]);
                         ucTiaoShiOne.txtdebug.AppendText(res2 + "\r\n");
                         ucTiaoShiOne.txtdebug.ScrollToEnd();
                     }
                     if (CommData.cboChan3 == 1)
                     {
-                        string res3 = string.Format("chip#3:max_read:{0};  opt_int_time：{1}", max_read_list[2], opt_int_time[2]);
+                        string res3 = string.Format("chip#3:max_read:{0}; new opt_int_time：{1}", max_read_list[2], opt_int_time[2]);
                         ucTiaoShiOne.txtdebug.AppendText(res3 + "\r\n");
                         ucTiaoShiOne.txtdebug.ScrollToEnd();
                     }
                     if (CommData.cboChan4 == 1)
                     {
-                        string res4 = string.Format("chip#4:max_read:{0};  opt_int_time：{1}", max_read_list[3], opt_int_time[3]);
+                        string res4 = string.Format("chip#4:max_read:{0}; new opt_int_time：{1}", max_read_list[3], opt_int_time[3]);
                         ucTiaoShiOne.txtdebug.AppendText(res4 + "\r\n");
                         ucTiaoShiOne.txtdebug.ScrollToEnd();
                     }
@@ -7536,7 +7559,7 @@ namespace Anitoa
                 Thread.Sleep(300);
                 return true;
             }
-            else if (dn_cnt == base_cnt + 6)
+            else if (dn_cnt == base_cnt + autoint_steps + 1)
             {
                 jfindex = 0;
                 this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
@@ -7545,22 +7568,22 @@ namespace Anitoa
                     ucTiaoShiOne.txtdebug.ScrollToEnd();
                     ucSettingTwo.bdName.Visibility = Visibility.Collapsed;
 
-                    if (CommData.cboChan1 == 1)
-                    {
-                        ucTiaoShiTwo.txtITChan1.Text = opt_int_time[0].ToString();
-                    }
-                    if (CommData.cboChan2 == 1)
-                    {
-                        ucTiaoShiTwo.txtITChan2.Text = opt_int_time[1].ToString();
-                    }
-                    if (CommData.cboChan3 == 1)
-                    {
-                        ucTiaoShiTwo.txtITChan3.Text = opt_int_time[2].ToString();
-                    }
-                    if (CommData.cboChan4 == 1)
-                    {
-                        ucTiaoShiTwo.txtITChan4.Text = opt_int_time[3].ToString();
-                    }
+                    //if (CommData.cboChan1 == 1)       // 4-9-23 No need
+                    //{
+                    //    ucTiaoShiTwo.txtITChan1.Text = opt_int_time[0].ToString();
+                    //}
+                    //if (CommData.cboChan2 == 1)
+                    //{
+                    //    ucTiaoShiTwo.txtITChan2.Text = opt_int_time[1].ToString();
+                    //}
+                    //if (CommData.cboChan3 == 1)
+                    //{
+                    //    ucTiaoShiTwo.txtITChan3.Text = opt_int_time[2].ToString();
+                    //}
+                    //if (CommData.cboChan4 == 1)
+                    //{
+                    //    ucTiaoShiTwo.txtITChan4.Text = opt_int_time[3].ToString();
+                    //}
                 });
 
                 SetIntergrationTimeAndGain(opt_int_time[0], opt_int_time[1], opt_int_time[2], opt_int_time[3]);
@@ -7578,6 +7601,7 @@ namespace Anitoa
 
                 return true;
             }
+
             return false;
         }        
 
@@ -7606,20 +7630,20 @@ namespace Anitoa
 
                 opt_int_time[i] = 1;
                 max_read_list[i] = 30;
-                inc_factor[i] = 0;
+//                inc_factor[i] = 0;
                 max_read_0[i] = 20;
 
                 SetSensor(i + 1, (float)Math.Round(opt_int_time[i]));
             }
             Thread.Sleep(300);
 
-            this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()
-            {
-                ucTiaoShiTwo.txtITChan1.Text = "1";
-                ucTiaoShiTwo.txtITChan2.Text = "1";
-                ucTiaoShiTwo.txtITChan3.Text = "1";
-                ucTiaoShiTwo.txtITChan4.Text = "1";
-            });
+            //this.Dispatcher.BeginInvoke(DispatcherPriority.Normal, (ThreadStart)delegate ()       //4-9-23 ZD no need
+            //{
+            //    ucTiaoShiTwo.txtITChan1.Text = "1";
+            //    ucTiaoShiTwo.txtITChan2.Text = "1";
+            //    ucTiaoShiTwo.txtITChan3.Text = "1";
+            //    ucTiaoShiTwo.txtITChan4.Text = "1";
+            //});
         }
 
         public bool PrintCSVReport(string csvPath)
@@ -7687,9 +7711,7 @@ namespace Anitoa
             {
                 return false;
             }
-
         }
-
     }
 }
  

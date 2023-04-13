@@ -49,7 +49,7 @@ namespace Anitoa
 
         double cheat_factor = 0.1f;                  // Fitted curve added with some hint of raw data
         double cheat_factor2 = 0.5f;                 // The fake "raw" data
-        double cheat_factorNeg = 0.33f;              // Suppress signal is judged negative
+        double cheat_factorNeg = 0.5f;              // Suppress signal is judged negative
 
         bool hide_org = true;
         public bool norm_top = true; 
@@ -159,7 +159,7 @@ namespace Anitoa
 
                 cheat_factor = 0.1f;                  // Fitted curve added with some hint of raw data
                 cheat_factor2 = 0.5f;                 // The fake "raw" data
-                cheat_factorNeg = 0.15f;              // Suppress signal is judged negative
+                cheat_factorNeg = 0.2f;              // Suppress signal is judged negative
             }
 
             MIN_CT = CommData.experimentModelData.curfitMinCt;
@@ -1165,7 +1165,7 @@ namespace Anitoa
                 {
                     int size = m_Size[iy];
 
-                    if (norm_top && m_CTValue[iy, frameindex] < START_CYCLE + 1)              // Treat negative data so they scale correctly.
+                    if (/*norm_top && */m_CTValue[iy, frameindex] < START_CYCLE + 1)              // Treat negative data so they scale correctly. 3/22/2023 Since we are using FAKE DENORM, always scale negative data
                     {
                         double max_k = m_max_k[iy];
                         if (max_k < 3)
@@ -1217,7 +1217,12 @@ namespace Anitoa
                     {
                         for (int i = 0; i < size; i++)
                         {
-                            m_zData2[iy, frameindex, i] *= cheat_factorNeg;
+                            double currbase = m_mean[iy, frameindex];
+                            double cfn = 1;
+
+                            if (currbase > 5000) cfn = 5000 / currbase;
+
+                            m_zData2[iy, frameindex, i] *= cheat_factorNeg * cfn;
                             m_zData[iy, frameindex, i] = m_zData2[iy, frameindex, i];
                         }
                     }
@@ -1231,6 +1236,26 @@ namespace Anitoa
 
             for (int iy = 0; iy < MAX_CHAN; iy++)
             {
+                switch(iy)
+                {
+                    case 0:
+                        if (CommData.cboChan1 == 0)
+                            continue;
+                        break;
+                    case 1:
+                        if (CommData.cboChan2 == 0)
+                            continue;
+                        break;
+                    case 2:
+                        if (CommData.cboChan3 == 0)
+                            continue;
+                        break;
+                    case 3:
+                        if (CommData.cboChan4 == 0)
+                            continue;
+                        break;
+                }
+
                 for (int frameindex = 0; frameindex < numWells; frameindex++)
                 {
                     int size = m_Size[iy];
@@ -1349,9 +1374,9 @@ namespace Anitoa
                 m_Confidence[iy, frameindex] = " -- 相对可信度: " + (confi * 100).ToString("0.0") + " % " + "扩增效率: " + (eff[frameindex] * 100).ToString("0.0") + "% " + " 信噪比 " + (snr * 100).ToString("0.00") + " (本底噪音: " + m_stdev[iy, frameindex].ToString("0.00") + ")";       // full confidence is 100
 #endif
 
-                if (confi < CommData.experimentModelData.confiTh 
-                    || snr < CommData.experimentModelData.snrTh 
-                    || eff[frameindex] < CommData.experimentModelData.ampEffTh)
+                if (confi < CommData.experimentModelData.confiTh// ld [iy] 
+                    || snr < CommData.experimentModelData.snrTh// ld[iy] 
+                    || eff[frameindex] < CommData.experimentModelData.ampEffTh/*ld [iy]*/)
                 {
 
                     m_falsePositive[iy, frameindex] = true;

@@ -487,3 +487,29 @@ C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marv
 C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.CopyComplete
 C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.exe
 C:\Users\zding\Documents\WorkArea\Git Maverick\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.exe.config
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.exe
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\GenericHid.dll
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\GenericHid.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csprojAssemblyReference.cache
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\Synoxo.USBHidDevice.Form1.resources
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\Synoxo.USBHidDevice.Properties.Resources.resources
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.GenerateResource.cache
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.CoreCompileInputs.cache
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.CopyComplete
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.exe
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.exe.config
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.exe
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\GenericHid.dll
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\GenericHid.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csprojAssemblyReference.cache
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\Synoxo.USBHidDevice.Form1.resources
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\Synoxo.USBHidDevice.Properties.Resources.resources
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.GenerateResource.cache
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.CoreCompileInputs.cache
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.CopyComplete
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.exe
+C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.pdb

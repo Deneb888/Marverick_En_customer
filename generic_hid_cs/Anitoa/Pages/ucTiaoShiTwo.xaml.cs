@@ -22,12 +22,13 @@ namespace Anitoa.Pages
     {
         public event EventHandler SetParametersOK;
         public event EventHandler Load_Flash;
+        public int cur_chan;
 
         public ucTiaoShiTwo()
         {
-            InitializeComponent();
             this.Loaded += ucTiaoShiTwo_Loaded;
             this.Unloaded += ucTiaoShiTwo_Unloaded;
+            InitializeComponent();
         }
 
         void ucTiaoShiTwo_Loaded(object sender, RoutedEventArgs e)
@@ -43,9 +44,11 @@ namespace Anitoa.Pages
             txtCrossTalk34.Text = (100 * CommData.experimentModelData.crossTalk34).ToString("0.0");
             txtCrossTalk43.Text = (100 * CommData.experimentModelData.crossTalk43).ToString("0.0");
 
-            txtConfiTh.Text = (100 * CommData.experimentModelData.confiTh).ToString("0.0");
-            txtAmpEffTh.Text = (100 * CommData.experimentModelData.ampEffTh).ToString("0.0");
-            txtSnRTh.Text = (100 * CommData.experimentModelData.snrTh).ToString("0.0");
+            cur_chan = cboChansel.SelectedIndex;
+
+            txtConfiTh.Text = (100 * CommData.experimentModelData.confiTh/*ld[cur_chan]*/).ToString("0.0");
+            txtAmpEffTh.Text = (100 * CommData.experimentModelData.ampEffTh/*ld[cur_chan]*/).ToString("0.0");
+            txtSnRTh.Text = (100 * CommData.experimentModelData.snrTh/*ld[cur_chan]*/).ToString("0.0");
 
             //ComboBoxItem cbi = cboGainChan1.SelectedItem as ComboBoxItem;
             cboGainChan1.SelectedIndex = CommData.experimentModelData.gainMode[0];
@@ -69,6 +72,9 @@ namespace Anitoa.Pages
 
             cboLabel.IsChecked = CommData.showCrosshairLabel;
             cboCtCrosshair.IsChecked = CommData.showCtCrosshair;
+
+            // cboChansel.SelectedIndex = 0;
+
         }
 
         void ucTiaoShiTwo_Unloaded(object sender, RoutedEventArgs e)
@@ -100,7 +106,7 @@ namespace Anitoa.Pages
             }
         }
 
-            private void cboChan1_Checked(object sender, RoutedEventArgs e)
+        private void cboChan1_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox cb = sender as CheckBox;
             switch (cb.Name)
@@ -260,6 +266,21 @@ namespace Anitoa.Pages
         private void cboLabel_Unchecked(object sender, RoutedEventArgs e)
         {
             CommData.showCrosshairLabel = false;
+        }
+
+        private void Chan_sel(object sender, SelectionChangedEventArgs e)
+        {
+            /*
+            CommData.experimentModelData.ampEffThld[cur_chan] = 0.01 * Convert.ToDouble(txtAmpEffTh.Text.ToString());
+            CommData.experimentModelData.snrThld[cur_chan] = 0.01 * Convert.ToDouble(txtSnRTh.Text.ToString());
+            CommData.experimentModelData.confiThld[cur_chan] = 0.01 * Convert.ToDouble(txtConfiTh.Text.ToString());
+
+            cur_chan = cboChansel.SelectedIndex;
+
+            txtConfiTh.Text = (100 * CommData.experimentModelData.confiThld[cur_chan]).ToString("0.0");
+            txtAmpEffTh.Text = (100 * CommData.experimentModelData.ampEffThld[cur_chan]).ToString("0.0");
+            txtSnRTh.Text = (100 * CommData.experimentModelData.snrThld[cur_chan]).ToString("0.0");
+            */
         }
     }
 }

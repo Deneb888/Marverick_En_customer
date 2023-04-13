@@ -1010,9 +1010,7 @@ namespace Anitoa.Pages
             CCurveShowMet CCurveShowMet = new CCurveShowMet();
             CCurveShowMet.InitData();
             CCurveShowMet.bShowRaw = cbRaw.IsChecked == true;
-
             CCurveShowMet.DetectTh = Convert.ToDouble(txtDetectTh.Text);
-
 
             List<string> kslist = new List<string>();//定义孔数
 
@@ -1080,8 +1078,6 @@ namespace Anitoa.Pages
             {
                 for (int n = 0; n < kslist.Count; n++)
                 {
-
-
                     List<ChartDataNew> cdlist = CommData.GetChartDataByRJQX(tdlist[i], 0, kslist[n]);
                     //List<ChartData> cdlist = CommData.GetChartData(tdlist[i], 0, kslist[n]);//获取选点值
                     for (int k = 0; k < cdlist.Count; k++)

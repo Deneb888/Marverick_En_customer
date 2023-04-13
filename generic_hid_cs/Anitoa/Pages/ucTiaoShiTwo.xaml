@@ -17,7 +17,7 @@
             <RowDefinition Height="0.5*"></RowDefinition>
             <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition Height="0.3*"></RowDefinition>
-            <RowDefinition Height="0.3*"></RowDefinition>
+            <RowDefinition Height="0.4*"></RowDefinition>
             <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition Height="0.3*"></RowDefinition>
             <RowDefinition Height="0.3*"></RowDefinition>
@@ -40,7 +40,7 @@
             <CheckBox Name="cboChan3" Content="Chan3" Checked="cboChan1_Checked" Unchecked="cboChan1_Unchecked" IsChecked="False" Margin="0,0,20,0"></CheckBox>
             <CheckBox Name="cboChan4" Content="Chan4" Checked="cboChan1_Checked" Unchecked="cboChan1_Unchecked" IsChecked="False"></CheckBox>
         </StackPanel>
-        <TextBlock Text="Gain settings:" VerticalAlignment="Top" Margin="20,0,0,8" Grid.Row="3" FontSize="14" Grid.ColumnSpan="2" Grid.Column="1" ></TextBlock>
+        <TextBlock Text="Gain settings:" VerticalAlignment="Center" Margin="20,0,0,8" Grid.Row="3" FontSize="14" Grid.ColumnSpan="2" Grid.Column="1" ></TextBlock>
         <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="0,5,0,0">
             <TextBlock Text="Chan1 gain:" VerticalAlignment="Center" Margin="50,0,10,0" Grid.Row="3"></TextBlock>
             <ComboBox Width="130" Height="25" VerticalContentAlignment="Center" Name="cboGainChan1">
@@ -67,16 +67,20 @@
         </StackPanel>
         <!--<TextBlock Text="Protocol  debug(e.g. '04 05 00' to read V15)" VerticalAlignment="Center" Margin="50,0,0,0" Grid.Row="6"></TextBlock>-->
         <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,0,0,34.667" Grid.Row="1">
-            <TextBlock Text="Intergration time (ms):" VerticalAlignment="Center" Margin="20,-30,70,0" FontSize="14"/>
+            <TextBlock Text="Manual Intergration Time (ms):" VerticalAlignment="Center" Margin="20,-30,70,0" FontSize="14"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5,0,0">
-            <TextBox Name="txtITChan1" Text="1" Width="100" Height="25" VerticalContentAlignment="Center" Margin="50,0,10,0"></TextBox>
+            <TextBlock Text="Chan1: " VerticalAlignment="Center" Margin="30, 0, 0, 0" Grid.Row="3"></TextBlock>
+            <TextBox Name="txtITChan1" Text="1" Width="100" Height="25" VerticalContentAlignment="Center" Margin="10,0,10,0"></TextBox>
+            <TextBlock Text="Chan2: " VerticalAlignment="Center" Margin="30, 0, 0, 0" Grid.Row="3"></TextBlock>
             <TextBox Name="txtITChan2" Text="1" Width="100" Height="25" VerticalContentAlignment="Center" Margin="20,0,30,0"></TextBox>
             <RadioButton Name="rboLG" Content="Low gain" VerticalAlignment="Center" Margin="0,0,33,0" Checked="rboLG_Checked" Visibility="Hidden"></RadioButton>
             <RadioButton Name="rboHG" IsChecked="True" Content="High gain" VerticalAlignment="Center" Checked="rboLG_Checked" Visibility="Hidden"></RadioButton>
         </StackPanel>
         <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,5, 0, 0">
-            <TextBox Width="100" Text="1" Name="txtITChan3" Height="25" VerticalContentAlignment="Center" Margin="50,0,10,0"></TextBox>
+            <TextBlock Text="Chan3: " VerticalAlignment="Center" Margin="30, 0, 0, 0" Grid.Row="3"></TextBlock>
+            <TextBox Width="100" Text="1" Name="txtITChan3" Height="25" VerticalContentAlignment="Center" Margin="10,0,10,0"></TextBox>
+            <TextBlock Text="Chan4: " VerticalAlignment="Center" Margin="30, 0, 0, 0" Grid.Row="3"></TextBlock>
             <TextBox Width="100" Text="1" Name="txtITChan4" Height="25" VerticalContentAlignment="Center" Margin="20,0,30,0"></TextBox>
             <RadioButton Name="rbo12F" Checked="rbo12F_Checked"  GroupName="ai" IsChecked="True" Content="12X12 Frame" VerticalAlignment="Center" Margin="0,0,10,0" Visibility="Hidden"></RadioButton>
             <RadioButton Name="rbo24F" Checked="rbo12F_Checked"  GroupName="ai"  Content="24X24 Frame" VerticalAlignment="Center" Visibility="Hidden"></RadioButton>
@@ -134,19 +138,27 @@
         <TextBlock Text="False positive detection: " VerticalAlignment="Bottom" Margin="20,0,0,115" Grid.Row="9" Grid.Column="3" FontSize="14" Grid.RowSpan="2"></TextBlock>
         <StackPanel Grid.Row="10" Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,42.333,0,0">
             <TextBlock Text="Relative strength threshold %" VerticalAlignment="Center" Margin="30, 0, 0, 0"/>
-            <TextBox  Width="40" Text="0" x:Name="txtConfiTh"  Height="30" VerticalContentAlignment="Center" Margin="10, 0, 0, 0"/>
+            <TextBox  Width="40" Text="28" x:Name="txtConfiTh"  Height="30" VerticalContentAlignment="Center" Margin="10, 0, 0, 0"/>
             <TextBlock Text="Amp. efficiency threshold %" VerticalAlignment="Center" Margin="20,0,0,0"/>
-            <TextBox  Width="40" Text="0" x:Name="txtAmpEffTh"  Height="30" VerticalContentAlignment="Center" Margin="10,0,0,0"/>
+            <TextBox  Width="40" Text="33" x:Name="txtAmpEffTh"  Height="30" VerticalContentAlignment="Center" Margin="10,0,0,0"/>
             <TextBlock Text="SnR threshold" VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
-            <TextBox  Width="40" Text="0" x:Name="txtSnRTh"  Height="30" VerticalContentAlignment="Center" Margin="10, 0, 0, 0"/>
+            <TextBox  Width="40" Text="24" x:Name="txtSnRTh"  Height="30" VerticalContentAlignment="Center" Margin="10, 0, 0, 0"/>
         </StackPanel>
+
+        <TextBlock Text="Channel select:" VerticalAlignment="Center" Margin="25,0,0,0" Grid.Column="3" Grid.Row="11" Width="80" HorizontalAlignment="Left" Visibility="Hidden"/>
+        <ComboBox Margin="128,0,0,0" SelectionChanged="Chan_sel" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center" Grid.Column="3" Grid.Row="11" Height="28" Name="cboChansel" Width="85" SelectedIndex="0" Visibility="Hidden">
+            <ComboBoxItem Content="Chan 1"></ComboBoxItem>
+            <ComboBoxItem Content="Chan 2"></ComboBoxItem>
+            <ComboBoxItem Content="Chan 3"></ComboBoxItem>
+            <ComboBoxItem Content="Chan 4"></ComboBoxItem>
+        </ComboBox>
 
         <RadioButton Style="{DynamicResource rbButtons}" x:Name="cboIG" Click="cboIG_Click" Content="Commit changes" Width="140" Height="30" Margin="0,0,0,0" Grid.Row="11" Grid.Column="3" Visibility="Hidden"/>
         <CheckBox Content="Raw, base unaligned" Checked="cboRaw_Checked" Unchecked="cboRaw_Unchecked" HorizontalAlignment="Left" Margin="20,27,0,0" Grid.Row="7" VerticalAlignment="Top" Grid.Column="1"/>
         <CheckBox Content="Disable Ct Detect" Checked="cboNoCt_Checked" Unchecked="cboNoCt_Unchecked" HorizontalAlignment="Left" Margin="30,27,0,0" Grid.Row="7" VerticalAlignment="Top" Grid.Column="2"/>
         <CheckBox Content="Disable Dark Correct (and base slope correct)" Checked="cboNoDark_Checked" Unchecked="cboNoDark_Unchecked" HorizontalAlignment="Left" Margin="200,27,0,0" Grid.Row="7" VerticalAlignment="Top" Grid.Column="2"/>
         <TextBlock Text="Curve Fitter Debug Features:" Grid.Row="7"  VerticalAlignment="Top" Margin="20,-10,0,0" FontSize="14" Grid.ColumnSpan="2" Grid.Column="1"/>
-        <TextBlock Text="( confidence below threshold OR amp efficiency below threshold OR SnR below threshold )" VerticalAlignment="Top" Margin="20,5,0,0" Grid.Row="10" Grid.Column="3"/>
+        <TextBlock Text="(False positive: relative strength below threshold OR amp efficiency below threshold OR SnR below threshold)" VerticalAlignment="Top" Margin="20,5,0,0" Grid.Row="10" Grid.Column="3"/>
         <TextBlock Text="Crosstalk correction:" VerticalAlignment="Center" Margin="20, 10, 0, 0 " Grid.Row="3" FontSize="14" Grid.ColumnSpan="1" Grid.Column="3" />
         <CheckBox Content="Disable Gap Removal" Checked="cboGap_Checked" Unchecked="cboGap_Unchecked" HorizontalAlignment="Left" Margin="20,10,0,0" Grid.Row="8" VerticalAlignment="Top" Grid.Column="1"/>
         <CheckBox Content="Show Dark Curve" Checked="cboDark_Checked" Unchecked="cboDark_Unchecked" HorizontalAlignment="Left" Margin="30,10,0,0" Grid.Row="8" VerticalAlignment="Top" Grid.Column="2"/>
@@ -166,7 +178,6 @@
             <CheckBox Name ="cboCtCrosshair"  Content="Ct or Melt Temp. Crosshair" Checked="cboCtCrosshair_Checked" Unchecked="cboCtCrosshair_Unchecked" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="10" VerticalAlignment="Top" Grid.Column="1"/>
             <CheckBox Name="cboLabel" Content="Mouse Crosshair Label" Checked="cboLabel_Checked" Unchecked="cboLabel_Unchecked" HorizontalAlignment="Left" Margin="30,0,0,0" Grid.Row="10" VerticalAlignment="Top" Grid.Column="2"/>
         </StackPanel>
-
 
     </Grid>
 </UserControl>

@@ -45,6 +45,7 @@ namespace Anitoa.Pages
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
             RadioButton rb = sender as RadioButton;
+
             switch (rb.Name)
             {
                 case "rbStart":
@@ -53,6 +54,7 @@ namespace Anitoa.Pages
                         index = 0;
 
                     cdlist = CommData.GetImgFrame(ChipNum, index);
+                    if (cdlist.Count == 0) break;
 
                     int value = 0, row, col;
 

@@ -229,6 +229,10 @@ namespace Anitoa
         public double ampEffTh { get; set; }
         public double snrTh { get; set; }
 
+        //public double[] confiThld { get; set; }
+        //public double[] ampEffThld { get; set; }
+        //public double[] snrThld { get; set; }
+
         public int[] gainMode; // 1: 低 low gain 0: 高 high gain
 
         public int curfitStartCycle, curfitMinCt;
@@ -259,20 +263,36 @@ namespace Anitoa
             assayChanStdSlope = new string[MAX_CHAN];
             assayChanStdIntercept = new string[MAX_CHAN];
 
-            crossTalk21 = 0.08;
-            crossTalk12 = 0.09;
+            //confiThld = new double[MAX_CHAN];
+            //ampEffThld = new double[MAX_CHAN];
+            //snrThld = new double[MAX_CHAN];
+
+            crossTalk21 = 0.05;
+            crossTalk12 = 0.06;
             crossTalk23 = 0.055;
             crossTalk32 = 0.035;
-            crossTalk43 = 0;
+            crossTalk43 = 0.015;
             crossTalk34 = 0.05;
-
-            //confiTh = 0.175;
-            //ampEffTh = 0.2;
-            //snrTh = 0.125;
 
             confiTh = 0.2;
             ampEffTh = 0.25;
             snrTh = 0.15;
+
+            //confiThld[0] = 0.28;
+            //ampEffThld[0] = 0.33;
+            //snrThld[0] = 0.24;
+
+            //confiThld[1] = 0.25;
+            //ampEffThld[1] = 0.2;
+            //snrThld[1] = 0.175;
+
+            //confiThld[2] = 0.25;
+            //ampEffThld[2] = 0.2;
+            //snrThld[2] = 0.175;
+
+            //confiThld[3] = 0.25;
+            //ampEffThld[3] = 0.2;
+            //snrThld[3] = 0.175;
 
             gainMode = new int[MAX_CHAN];
 
