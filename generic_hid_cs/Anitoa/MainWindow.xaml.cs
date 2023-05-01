@@ -518,10 +518,15 @@ namespace Anitoa
             CommData.experimentModelData.snrTh/*ld[cur_chan]*/ = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtSnRTh.Text.ToString());
             CommData.experimentModelData.confiTh/*ld[cur_chan]*/ = 0.01 * Convert.ToDouble(ucTiaoShiTwo.txtConfiTh.Text.ToString());
 
-            CommData.int_time_1 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text);
-            CommData.int_time_2 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan2.Text);
-            CommData.int_time_3 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text);
-            CommData.int_time_4 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text);
+            //CommData.int_time_1 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text);
+            //CommData.int_time_2 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan2.Text);
+            //CommData.int_time_3 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text);
+            //CommData.int_time_4 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text);
+
+            CommData.experimentModelData.IntTimeChan1 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text);
+            CommData.experimentModelData.IntTimeChan2 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan2.Text);
+            CommData.experimentModelData.IntTimeChan3 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text);
+            CommData.experimentModelData.IntTimeChan4 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text);
 
             if (CommData.deviceFound && CommData.currCycleState == 0)
                 SetIntergrationTimeAndGain();
@@ -2568,12 +2573,12 @@ namespace Anitoa
             //m_factorIntTime[2] = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text);
             //m_factorIntTime[3] = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text);
 
-            SetSensor(1, CommData.int_time_1);
-            SetSensor(2, CommData.int_time_2);
-            SetSensor(3, CommData.int_time_3);
-            SetSensor(4, CommData.int_time_4);
+            SetSensor(1, CommData.experimentModelData.IntTimeChan1); // CommData.int_time_1);
+            SetSensor(2, CommData.experimentModelData.IntTimeChan2);
+            SetSensor(3, CommData.experimentModelData.IntTimeChan3);
+            SetSensor(4, CommData.experimentModelData.IntTimeChan4);
 
-           //  CommData.int_time_1 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text);
+            //  CommData.int_time_1 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan1.Text);
             //            ucProtocol.SelSensor(MyDeviceManagement, 1);
             //            ucProtocol.SetIntergrationTime(MyDeviceManagement, int_time_1);
 
@@ -2642,10 +2647,15 @@ namespace Anitoa
             SetSensor(3, int3);
             SetSensor(4, int4);
 
-            CommData.int_time_1 = int1;
-            CommData.int_time_2 = int2;
-            CommData.int_time_3 = int3;
-            CommData.int_time_4 = int4;
+            //CommData.int_time_1 = int1;
+            //CommData.int_time_2 = int2;
+            //CommData.int_time_3 = int3;
+            //CommData.int_time_4 = int4;
+
+            CommData.experimentModelData.IntTimeChan1 = int1;
+            CommData.experimentModelData.IntTimeChan2 = int2;
+            CommData.experimentModelData.IntTimeChan3 = int3;
+            CommData.experimentModelData.IntTimeChan4 = int4;
         }
 
         /*        private byte[] SetGainMode()
@@ -5561,16 +5571,16 @@ namespace Anitoa
             switch (chan)
             {
                 case 0:
-                    int_time_org = CommData.int_time_1;
+                    int_time_org = CommData.experimentModelData.IntTimeChan1; // int_time_1;
                     break;
                 case 1:
-                    int_time_org = CommData.int_time_2;
+                    int_time_org = CommData.experimentModelData.IntTimeChan2; // int_time_2;
                     break;
                 case 2:
-                    int_time_org = CommData.int_time_3;
+                    int_time_org = CommData.experimentModelData.IntTimeChan3;  // int_time_3;
                     break;
                 case 3:
-                    int_time_org = CommData.int_time_4;
+                    int_time_org = CommData.experimentModelData.IntTimeChan4;  // int_time_4;
                     break;
                 default:
                     break;
@@ -5732,10 +5742,10 @@ namespace Anitoa
                         //    ucTiaoShiTwo.txtITChan4.Text = opt_int_time[3].ToString();
                         //}
 
-                        CommData.int_time_1 = opt_int_time[0];
-                        CommData.int_time_2 = opt_int_time[1];
-                        CommData.int_time_3 = opt_int_time[2];
-                        CommData.int_time_4 = opt_int_time[3];
+                        CommData.experimentModelData.IntTimeChan1 = opt_int_time[0];
+                        CommData.experimentModelData.IntTimeChan2 = opt_int_time[1];
+                        CommData.experimentModelData.IntTimeChan3 = opt_int_time[2];
+                        CommData.experimentModelData.IntTimeChan4 = opt_int_time[3];
 
                         SetIntergrationTimeAndGain();
                         tmrThread = false;

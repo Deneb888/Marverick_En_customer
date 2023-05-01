@@ -245,6 +245,11 @@ namespace Anitoa
 
         public double meltDetTh;
 
+        public float IntTimeChan1;
+        public float IntTimeChan2;
+        public float IntTimeChan3;
+        public float IntTimeChan4;
+
         public experiment()
         {
             sampleName = new string[MAX_ROW, MAX_WELL_PER_ROW];
@@ -315,6 +320,11 @@ namespace Anitoa
             underTemp = 3;
 
             meltDetTh = 400;
+
+            IntTimeChan1 = 10.0f;
+            IntTimeChan2 = 20.0f;
+            IntTimeChan3 = 100.0f;
+            IntTimeChan4 = 30.0f;
         }
 
         public experiment ShallowCopy()

@@ -424,7 +424,9 @@ namespace Anitoa.Pages
                     string path = pOpenFileDialog.FileName;
                     //string setdatapath = AppDomain.CurrentDomain.BaseDirectory + pOpenFileDialog.SafeFileName;
                     CommData.experimentModelData = JsonConvert.DeserializeObject<experiment>(File.ReadAllText(path));
-                    CommData.openFileName = path;
+                    //CommData.openFileName = path;
+
+                    CommData.openFileName = pOpenFileDialog.SafeFileName;
 
                     if (!bLoadTmpl && CommData.flash_loaded)
                     {

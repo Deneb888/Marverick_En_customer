@@ -159,7 +159,7 @@ namespace Anitoa
 
                 cheat_factor = 0.1f;                  // Fitted curve added with some hint of raw data
                 cheat_factor2 = 0.5f;                 // The fake "raw" data
-                cheat_factorNeg = 0.2f;              // Suppress signal is judged negative
+                cheat_factorNeg = 0.125f;              // Suppress signal is judged negative
             }
 
             MIN_CT = CommData.experimentModelData.curfitMinCt;
@@ -302,7 +302,7 @@ namespace Anitoa
                     }
 
 #if EXT_OUTLIER_REMOVAL
-                    OutlierRemove(ref yData, size, iy, frameindex, 5.0);
+                    if(!CommData.noCt) OutlierRemove2(ref yData, size, iy, frameindex, 5.0);
 #endif
 
                     //============= Test code: distortion repair==============
@@ -960,6 +960,51 @@ namespace Anitoa
             }
 #endif
         }
+
+        private void OutlierRemove2(ref double[] yData, int size, int i, int j, double threshold)
+        {
+
+#if POLYFIT_OUTLIER
+
+            double[] y = new double[size];
+            double[] x = new double[size];
+            double[] diff = new double[size];
+
+            for (int k = 0; k < size; k++)
+            {
+                y[k] = yData[k];
+                x[k] = (double)k;
+            }
+
+            var polyfit = new PolyFit(x, y, 6);
+            var fitted = polyfit.Fit(x);
+
+            for (int k = 0; k < size; k++)
+            {
+                diff[k] = y[k] - fitted[k];
+            }
+
+            double sum = diff.Sum();
+            double mean = sum / diff.Count();
+
+            double accum = 0.0;
+
+            for (int k = 0; k < diff.Count(); k++)
+            {
+                accum += (diff[k] - mean) * (diff[k] - mean);
+            }
+            double stdev = Math.Sqrt(accum / diff.Count());         //方差
+
+            for (int k = 0; k < size; k++)
+            {
+                if (diff[k] > threshold * stdev || diff[k] < -threshold * stdev || true)
+                {
+                    yData[k] = 0.8 * fitted[k] + 0.2 * yData[k];
+                }
+            }
+#endif
+        }
+
 
         private void PivotBase(ref double[] yData, int size, int i, int j)        
         {

@@ -56,10 +56,10 @@ namespace Anitoa.Pages
             cboGainChan3.SelectedIndex = CommData.experimentModelData.gainMode[2];
             cboGainChan4.SelectedIndex = CommData.experimentModelData.gainMode[3];
 
-            txtITChan1.Text = CommData.int_time_1.ToString("0.0");
-            txtITChan2.Text = CommData.int_time_2.ToString("0.0");
-            txtITChan3.Text = CommData.int_time_3.ToString("0.0");
-            txtITChan4.Text = CommData.int_time_4.ToString("0.0");
+            txtITChan1.Text = CommData.experimentModelData.IntTimeChan1.ToString("0.0");    // CommData.int_time_1.ToString("0.0");
+            txtITChan2.Text = CommData.experimentModelData.IntTimeChan2.ToString("0.0");    // CommData.int_time_2.ToString("0.0");
+            txtITChan3.Text = CommData.experimentModelData.IntTimeChan3.ToString("0.0");    // CommData.int_time_3.ToString("0.0");
+            txtITChan4.Text = CommData.experimentModelData.IntTimeChan4.ToString("0.0");    // CommData.int_time_4.ToString("0.0");
 
             txtStartCycle.Text = CommData.experimentModelData.curfitStartCycle.ToString();
             txtMinCt.Text = CommData.experimentModelData.curfitMinCt.ToString();
