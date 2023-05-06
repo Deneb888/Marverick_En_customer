@@ -1340,6 +1340,8 @@ namespace Anitoa
                 }
             }
 
+            if (max_ct < 23) max_ct = 23;
+
             m_max_k[iy] = max_k;
 
             if(max_k < 10 && max_k > 0.1 && CommData.experimentModelData.gainMode[iy] == 1)
@@ -1376,15 +1378,17 @@ namespace Anitoa
                 double ratio_eff = 0;
                 double snr = 0;
                 double ct = m_CTValue[iy, frameindex];
+                double mean = m_mean[iy, frameindex];
 
                 if (max_k > 0) ratio_k = k[frameindex, iy] / max_k;
                 if (max_eff > 0) ratio_eff = eff[frameindex] / max_eff;
 
                 double max_k_low = MAX_K_LOW;
 
-                if(m_mean[iy, frameindex] > 2000) max_k_low = 0.5 * m_mean[iy, frameindex] * 0.01;
+                if(mean > 1515)
+                    max_k_low = 0.66 * mean * 0.01;
 
-                if (max_k < MAX_K_LOW)
+                if (max_k < max_k_low)
                 {
                     ratio_k *= max_k / max_k_low;    // ratio discounted. If the max curve have a very small magnitude
                 }

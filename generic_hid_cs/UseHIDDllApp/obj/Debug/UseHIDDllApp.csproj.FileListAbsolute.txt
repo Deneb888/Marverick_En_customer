@@ -620,3 +620,16 @@ C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\
 C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.csproj.CopyComplete
 C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.exe
 C:\Users\ZhiminDing\Documents\WorkArea\English\English_Customer_dev\Maverick_En\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Debug\UseHIDDllApp.exe.config
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Debug\UseHIDDllApp.exe
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Debug\UseHIDDllApp.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Debug\GenericHid.dll
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Debug\GenericHid.pdb
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.csprojAssemblyReference.cache
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\Synoxo.USBHidDevice.Form1.resources
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\Synoxo.USBHidDevice.Properties.Resources.resources
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.csproj.GenerateResource.cache
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.csproj.CoreCompileInputs.cache
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.csproj.CopyComplete
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.exe
+C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Debug\UseHIDDllApp.pdb
