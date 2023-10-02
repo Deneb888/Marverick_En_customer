@@ -272,12 +272,12 @@ namespace Anitoa
             //ampEffThld = new double[MAX_CHAN];
             //snrThld = new double[MAX_CHAN];
 
-            crossTalk21 = 0.05;
-            crossTalk12 = 0.06;
-            crossTalk23 = 0.055;
-            crossTalk32 = 0.035;
-            crossTalk43 = 0.015;
-            crossTalk34 = 0.05;
+            crossTalk21 = 0.03;
+            crossTalk12 = 0.04;
+            crossTalk23 = 0.03;
+            crossTalk32 = 0.05;
+            crossTalk43 = 0.01;
+            crossTalk34 = 0.04;
 
             confiTh = 0.2;
             ampEffTh = 0.25;

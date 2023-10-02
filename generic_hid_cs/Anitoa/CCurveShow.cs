@@ -63,6 +63,7 @@ namespace Anitoa
         public double[,] m_bFactor = new double[MAX_CHAN, MAX_CYCL];
         public double[, ,] m_zData = new double[MAX_CHAN, MAX_WELL, MAX_CYCL];
         public double[,] m_CTValue = new double[MAX_CHAN, MAX_WELL];
+        public double[,] m_CTValue50 = new double[MAX_CHAN, MAX_WELL];
 
         public double[,] m_mean = new double[MAX_CHAN, MAX_WELL];
         public bool[,] m_falsePositive = new bool[MAX_CHAN, MAX_WELL];
@@ -96,7 +97,7 @@ namespace Anitoa
 
         private double NEG_SLOPE_START = -0.5;
         private double NORM_TOP_VAL = 50;               // 50 * 100 = 5000
-        private double DENORM_FACTOR = 0.75;
+        private double DENORM_FACTOR = 0.5;
 
         public void InitData()
         {
@@ -344,6 +345,7 @@ namespace Anitoa
             }
 
             NormalizeTop();
+            BunchingFix();
         }
 
         public void CalculateCT()
@@ -664,6 +666,7 @@ namespace Anitoa
             if (ct >= START_CYCLE + 1 && ct <= size)
             {
                 m_CTValue[color, well] = ct;
+                m_CTValue50[color, well] = t[well, color];
             }
 //          else
 //          {
@@ -846,34 +849,34 @@ namespace Anitoa
         {
             for (int n = 0; n < size; n++)
             {
-                if (i == 0 && m_Size[1] == m_Size[0] && CommData.experimentModelData.crossTalk21 > 0.01)
+                if (i == 0 && m_Size[1] == m_Size[0] && CommData.crossTalk21 > 0.01)
                 {
-                    yData[n] -= CommData.experimentModelData.crossTalk21 * m_yData[1, j, n];
+                    yData[n] -= CommData.crossTalk21 * m_yData[1, j, n];
                 }
 
-                if (i == 1 && m_Size[1] == m_Size[0] && CommData.experimentModelData.crossTalk12 > 0.01)
+                if (i == 1 && m_Size[1] == m_Size[0] && CommData.crossTalk12 > 0.01)
                 {
-                    yData[n] -= CommData.experimentModelData.crossTalk12 * m_yData[0, j, n];
+                    yData[n] -= CommData.crossTalk12 * m_yData[0, j, n];
                 }
 
-                if (i == 2 && m_Size[1] == m_Size[2] && CommData.experimentModelData.crossTalk23 > 0.01)
+                if (i == 2 && m_Size[1] == m_Size[2] && CommData.crossTalk23 > 0.01)
                 {
-                    yData[n] -= CommData.experimentModelData.crossTalk23 * m_yData[1, j, n];
+                    yData[n] -= CommData.crossTalk23 * m_yData[1, j, n];
                 }
 
-                if (i == 1 && m_Size[1] == m_Size[2] && CommData.experimentModelData.crossTalk32 > 0.01)
+                if (i == 1 && m_Size[1] == m_Size[2] && CommData.crossTalk32 > 0.01)
                 {
-                    yData[n] -= CommData.experimentModelData.crossTalk32 * m_yData[2, j, n];
+                    yData[n] -= CommData.crossTalk32 * m_yData[2, j, n];
                 }
 
-                if (i == 3 && m_Size[3] == m_Size[2] && CommData.experimentModelData.crossTalk34 > 0.01)
+                if (i == 3 && m_Size[3] == m_Size[2] && CommData.crossTalk34 > 0.01)
                 {
-                    yData[n] -= CommData.experimentModelData.crossTalk34 * m_yData[2, j, n];
+                    yData[n] -= CommData.crossTalk34 * m_yData[2, j, n];
                 }
 
-                if (i == 2 && m_Size[3] == m_Size[2] && CommData.experimentModelData.crossTalk43 > 0.01)
+                if (i == 2 && m_Size[3] == m_Size[2] && CommData.crossTalk43 > 0.01)
                 {
-                    yData[n] -= CommData.experimentModelData.crossTalk43 * m_yData[3, j, n];
+                    yData[n] -= CommData.crossTalk43 * m_yData[3, j, n];
                 }
             }
         }
@@ -1269,6 +1272,42 @@ namespace Anitoa
 
                             m_zData2[iy, frameindex, i] *= cheat_factorNeg * cfn;
                             m_zData[iy, frameindex, i] = m_zData2[iy, frameindex, i];
+                        }
+                    }
+                }
+            }
+        }
+
+        public void BunchingFix()
+        {
+            for (int iy = 0; iy < MAX_CHAN; iy++)
+            {
+                for (int frameindex = 0; frameindex < numWells; frameindex++)
+                {
+                    int size = m_Size[iy];
+
+                    if (!m_falsePositive[iy, frameindex])
+                    {                  // Ct Bunching fix
+
+                        //==========bunching fix==============
+
+                        double inflation = m_max_k[iy] / k[frameindex, iy] - 1;
+
+                        double denormFactor = (1 - DENORM_FACTOR);
+
+                       // if (!norm_top) denormFactor = 1;
+
+                        double percent_threshold = log_threshold[iy] * (1 + denormFactor * inflation);
+
+                        if (percent_threshold > 0.6) percent_threshold = 0.6;
+
+                        double ct_ofst = Math.Log(1 / percent_threshold - 1);           // at 50%, this is zero.
+
+                        double ct = m_CTValue50[iy, frameindex] - ct_ofst / r[frameindex, iy];
+
+                        if (ct >= START_CYCLE + 1 && ct <= size)
+                        {
+                            m_CTValue[iy, frameindex] = ct;
                         }
                     }
                 }

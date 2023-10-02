@@ -342,3 +342,11 @@ C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generi
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.csproj.CoreCompileInputs.cache
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.dll
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.pdb
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\USBHiDLib\bin\Debug\GenericHid.dll
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\USBHiDLib\bin\Debug\GenericHid.pdb
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.csprojAssemblyReference.cache
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.Properties.Resources.resources
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.csproj.GenerateResource.cache
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.csproj.CoreCompileInputs.cache
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.dll
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\USBHiDLib\obj\Debug\GenericHid.pdb

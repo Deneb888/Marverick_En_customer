@@ -471,6 +471,7 @@ namespace Anitoa.Pages
                         CommData.experimentModelData.CbooChan4 = false;
                     }
 
+                    CommData.UpdateCrossTalk();
                     InitData();
 
                     ChooseM("OpenExp", null);

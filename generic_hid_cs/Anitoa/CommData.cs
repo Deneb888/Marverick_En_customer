@@ -177,6 +177,15 @@ namespace Anitoa
 
         public static string openFileName = null;
 
+        public static double crossTalk21 = 0.0;
+        public static double crossTalk12 = 0.0;
+
+        public static double crossTalk23 = 0.0;
+        public static double crossTalk32 = 0.0;
+
+        public static double crossTalk43 = 0.0;
+        public static double crossTalk34 = 0.0;
+
         public static bool ReadDatapositionFile()
         {
             //判断相应月份文件夹是否存在，没有则创建
@@ -2700,6 +2709,18 @@ namespace Anitoa
             }
 
             return stringlist;
+        }
+
+        public static void UpdateCrossTalk()   // called when experiment loaded, or auto int time done.
+        {
+            crossTalk12 = experimentModelData.crossTalk12 * (experimentModelData.IntTimeChan2 / experimentModelData.IntTimeChan1) / 3;
+            crossTalk21 = experimentModelData.crossTalk21 * (experimentModelData.IntTimeChan1 / experimentModelData.IntTimeChan2) * 3;
+
+            crossTalk23 = experimentModelData.crossTalk23 * (experimentModelData.IntTimeChan3 / experimentModelData.IntTimeChan2) / 10;
+            crossTalk32 = experimentModelData.crossTalk32 * (experimentModelData.IntTimeChan2 / experimentModelData.IntTimeChan3) * 10;
+
+            crossTalk34 = experimentModelData.crossTalk34 * (experimentModelData.IntTimeChan4 / experimentModelData.IntTimeChan3) * 2;
+            crossTalk43 = experimentModelData.crossTalk43 * (experimentModelData.IntTimeChan3 / experimentModelData.IntTimeChan4) / 2;
         }
     }
 }

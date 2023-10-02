@@ -528,6 +528,8 @@ namespace Anitoa
             CommData.experimentModelData.IntTimeChan3 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan3.Text);
             CommData.experimentModelData.IntTimeChan4 = (float)Convert.ToDouble(ucTiaoShiTwo.txtITChan4.Text);
 
+            CommData.UpdateCrossTalk();
+
             if (CommData.deviceFound && CommData.currCycleState == 0)
                 SetIntergrationTimeAndGain();
         }
@@ -5746,6 +5748,8 @@ namespace Anitoa
                         CommData.experimentModelData.IntTimeChan2 = opt_int_time[1];
                         CommData.experimentModelData.IntTimeChan3 = opt_int_time[2];
                         CommData.experimentModelData.IntTimeChan4 = opt_int_time[3];
+
+                        CommData.UpdateCrossTalk();
 
                         SetIntergrationTimeAndGain();
                         tmrThread = false;
