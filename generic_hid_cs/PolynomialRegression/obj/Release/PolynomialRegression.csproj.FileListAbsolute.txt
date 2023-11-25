@@ -317,3 +317,8 @@ C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generi
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\PolynomialRegression\obj\Release\PolynomialRegression.dll
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\PolynomialRegression\obj\Release\PolynomialRegression.pdb
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\PolynomialRegression\obj\Release\PolynomialRegression.csprojAssemblyReference.cache
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\PolynomialRegression\bin\Release\PolynomialRegression.dll
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\PolynomialRegression\bin\Release\PolynomialRegression.pdb
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\PolynomialRegression\obj\Release\PolynomialRegression.csproj.CoreCompileInputs.cache
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\PolynomialRegression\obj\Release\PolynomialRegression.dll
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\PolynomialRegression\obj\Release\PolynomialRegression.pdb

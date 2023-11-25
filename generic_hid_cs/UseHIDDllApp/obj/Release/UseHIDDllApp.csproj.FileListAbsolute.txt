@@ -526,3 +526,16 @@ C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generi
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.CopyComplete
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.exe
 C:\Users\ZhiminDing\Documents\WorkArea\Experimental\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.pdb
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.exe.config
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.exe
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\UseHIDDllApp.pdb
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\GenericHid.dll
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\bin\Release\GenericHid.pdb
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csprojAssemblyReference.cache
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\Synoxo.USBHidDevice.Form1.resources
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\Synoxo.USBHidDevice.Properties.Resources.resources
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.GenerateResource.cache
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.CoreCompileInputs.cache
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.csproj.CopyComplete
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.exe
+C:\Users\zding\Documents\WorkArea\English\Marverick_En_customer\generic_hid_cs\UseHIDDllApp\obj\Release\UseHIDDllApp.pdb
