@@ -64,6 +64,7 @@ namespace Anitoa.Pages
             txtStartCycle.Text = CommData.experimentModelData.curfitStartCycle.ToString();
             txtMinCt.Text = CommData.experimentModelData.curfitMinCt.ToString();
             txtCtTh.Text = (CommData.experimentModelData.curfitCtTh * 100).ToString("0.0");
+            txtOutlTh.Text = CommData.experimentModelData.curfitOutlTh.ToString("0.0");
 
             cboChan1.IsChecked = CommData.experimentModelData.CbooChan1;
             cboChan2.IsChecked = CommData.experimentModelData.CbooChan2;
@@ -89,6 +90,7 @@ namespace Anitoa.Pages
                 CommData.experimentModelData.curfitStartCycle = Convert.ToInt32(txtStartCycle.Text.ToString());
                 CommData.experimentModelData.curfitMinCt = Convert.ToInt32(txtMinCt.Text.ToString());
                 CommData.experimentModelData.curfitCtTh = 0.01 * Convert.ToDouble(txtCtTh.Text.ToString());
+                CommData.experimentModelData.curfitOutlTh = Convert.ToDouble(txtOutlTh.Text.ToString());
 
                 CommData.experimentModelData.CbooChan1 = cboChan1.IsChecked.Value;
                 CommData.experimentModelData.CbooChan2 = cboChan2.IsChecked.Value;

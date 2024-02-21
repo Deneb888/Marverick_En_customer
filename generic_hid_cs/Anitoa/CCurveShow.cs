@@ -44,7 +44,7 @@ namespace Anitoa
         int MIN_CT = 13;                    // minimal allowed CT
         int CT_TH_MULTI = 8;                // 8 this is for pre calc of Ct, this is the level of ct multiple when threshold is 10%
 
-        const double OUTLIER_THRESHOLD = 2.8;
+        double OUTLIER_THRESHOLD = 3;
         int START_CYCLE = 3;
 
         double cheat_factor = 0.1f;                  // Fitted curve added with some hint of raw data
@@ -165,6 +165,7 @@ namespace Anitoa
 
             MIN_CT = CommData.experimentModelData.curfitMinCt;
             START_CYCLE = CommData.experimentModelData.curfitStartCycle;
+            OUTLIER_THRESHOLD = CommData.experimentModelData.curfitOutlTh;
 
             if (MIN_CT < 5)
                 MIN_CT = 5;

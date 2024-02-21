@@ -236,7 +236,7 @@ namespace Anitoa
         public int[] gainMode; // 1: 低 low gain 0: 高 high gain
 
         public int curfitStartCycle, curfitMinCt;
-        public double curfitCtTh;
+        public double curfitCtTh, curfitOutlTh;
 
         public float overTime { get; set; }
         public float overTemp { get; set; }
@@ -310,6 +310,7 @@ namespace Anitoa
             curfitStartCycle = 3;
             curfitMinCt = 13;
             curfitCtTh = 0.08;
+            curfitOutlTh = 3;
 
             A1des = A2des = A3des = A4des = A5des = A6des = A7des = A8des = "";
             B1des = B2des = B3des = B4des = B5des = B6des = B7des = B8des = "";

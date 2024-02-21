@@ -172,6 +172,10 @@
             <TextBlock Text="Ct Threshold(%): " VerticalAlignment="Center" Margin="20, 0, 0, 0"/>
             <TextBox  Width="60" Text="10" x:Name="txtCtTh"  Height="25" VerticalContentAlignment="Center" Margin="20, 0, 0, 0"/>
         </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,70,0,0">
+            <TextBlock Text="Outlier remove threshold: " VerticalAlignment="Center" Margin="50, 0, 0, 0"/>
+            <TextBox  Width="60" Text="3" x:Name="txtOutlTh"  Height="25" VerticalContentAlignment="Center" Margin="20, 0, 0, 0"/>
+        </StackPanel>
 
         <TextBlock Text="Analysis Display Settings:" Grid.Row="10"  VerticalAlignment="Top" Margin="20,5,0,0" FontSize="14" Grid.ColumnSpan="2" Grid.Column="1"/>
         <StackPanel Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,0">
